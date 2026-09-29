@@ -61,12 +61,10 @@ a {
 }
 
 .logo-img {
-  height: 60px; /* Increased from 56px to 90px for high visibility */
+  height: 65px; /* <--- Change this number to shrink or enlarge it */
   width: auto;
-  max-width: 260px; /* Prevents extremely wide logos from pushing nav items */
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.2));
 }
 
 

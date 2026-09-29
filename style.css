@@ -61,7 +61,7 @@ a {
 }
 
 .logo-img {
-  height: 90px; /* Increased from 56px to 90px for high visibility */
+  height: 60px; /* Increased from 56px to 90px for high visibility */
   width: auto;
   max-width: 260px; /* Prevents extremely wide logos from pushing nav items */
   object-fit: contain;

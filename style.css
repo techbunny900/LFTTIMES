@@ -35,18 +35,20 @@ a {
 }
 
 /* Navigation Header */
+/* Navigation Header */
 .navbar {
   background-color: var(--dark-blue);
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 6px 0; /* Ensures vertical breathing room for a larger logo */
 }
 
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 24px;
+  padding: 4px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,14 +57,18 @@ a {
 .logo-link {
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .logo-img {
-  height: 56px;
+  height: 90px; /* Increased from 56px to 90px for high visibility */
   width: auto;
+  max-width: 260px; /* Prevents extremely wide logos from pushing nav items */
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.15));
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.2));
 }
+
 
 .nav-links {
   display: flex;

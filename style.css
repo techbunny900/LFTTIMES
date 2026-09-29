@@ -353,3 +353,14 @@ a {
     align-items: flex-start;
   }
 }
+/* Makes the page look good on smaller screens */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 40px 20px 70px;
+  }
+
+  .about-text {
+    min-height: 400px;
+    padding: 20px;
+  }
+}

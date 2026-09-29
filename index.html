@@ -3,18 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LFT TIMES | Student Newspaper</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- FontAwesome Icons for Social Media -->
+  <title>LFT TIMES</title>
+  
+  <!-- Modern Editorial Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Top Header Navigation -->
+  <!-- Top Utility Bar (Journalism Standard) -->
+  <div class="top-bar">
+    <div class="top-bar-container">
+      <span class="date-badge"><i class="far fa-calendar-alt"></i> Today's Edition</span>
+      <span class="edition-tag">Lycée Français de Toronto Press</span>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
   <header class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo-link">
-        <img src="logo67.png" alt="LFT TIMES Logo" class="logo-img" />
+        <img src="logo.png" alt="LFT TIMES Logo" class="logo-img" />
+        <span class="brand-text">LFT <span>TIMES</span></span>
       </a>
       <nav class="nav-links">
         <a href="articles.html" class="nav-btn">Articles</a>
@@ -26,94 +41,95 @@
     </div>
   </header>
 
-  <!-- Hero Banner Section -->
+  <!-- Hero Banner -->
   <section class="hero">
-    <div class="hero-bg" style="background-image: url('toronto.jpg');"></div>
+    <div class="hero-bg" style="background-image: url('bg.png');"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-title">LFT<br />TIMES</h1>
+      <span class="hero-tag">Official Student Press</span>
+      <h1 class="hero-title">LFT TIMES</h1>
+      <p class="hero-subtitle">Uncovering campus stories, highlighting student achievements, and sharing student voices.</p>
     </div>
   </section>
 
-  <!-- Featured Articles Section -->
+  <!-- Main Content Area -->
   <main class="main-content">
-    <section class="articles-section">
-      <h2 class="section-title">Latest Updates</h2>
-      <div class="articles-grid">
+    
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">Top Stories</h2>
+      <div class="title-line"></div>
+    </div>
+
+    <!-- Editorial Layout: Feature Story + Side List -->
+    <div class="editorial-grid">
+      
+      <!-- Big Main Feature Article -->
+      <article class="feature-card">
+        <div class="feature-img-wrapper">
+          <img src="art1.jpg" alt="Featured Story" class="card-img" />
+          <span class="card-badge">Lead Story</span>
+        </div>
+        <div class="feature-body">
+          <span class="card-category">Campus News</span>
+          <h3 class="feature-title"><a href="articles/article1.html">Campus Innovation: New Student Projects Taking Center Stage</a></h3>
+          <p class="card-excerpt">Discover how students at LFT are leading new initiatives across science, arts, and community involvement this term.</p>
+          <div class="card-meta">
+            <span>By Editorial Staff</span> &bull; <span>5 min read</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Side Stack Articles -->
+      <div class="side-articles">
         
-        <!-- Article Box 1 -->
-        <a href="articles/article1.html" class="article-card">
-          <div class="card-img-wrapper">
-            <img src="art1.jpg" alt="Article Thumbnail" class="card-img" />
-          </div>
-          <div class="card-body">
-            <span class="card-category">News</span>
-            <h3 class="card-title">articles TBD</h3>
-            <p class="card-date">Recent</p>
-          </div>
-        </a>
+        <article class="side-card">
+          <span class="card-category">Sports</span>
+          <h4 class="side-title"><a href="articles/article2.html">Championship Season Begins for LFT Athletics</a></h4>
+          <p class="card-date">Updated 2 hours ago</p>
+        </article>
 
-        <!-- Article Box 2 -->
-        <a href="articles/article2.html" class="article-card">
-          <div class="card-img-wrapper">
-            <img src="art2.jpg" alt="Article Thumbnail" class="card-img" />
-          </div>
-          <div class="card-body">
-            <span class="card-category">Campus</span>
-            <h3 class="card-title">articles TBD</h3>
-            <p class="card-date">Recent</p>
-          </div>
-        </a>
+        <article class="side-card">
+          <span class="card-category">Arts & Culture</span>
+          <h4 class="side-title"><a href="articles/article3.html">Student Gallery Showcase: Visual Arts Spotlight</a></h4>
+          <p class="card-date">Yesterday</p>
+        </article>
 
-        <!-- Article Box 3 -->
-        <a href="articles/article3.html" class="article-card">
-          <div class="card-img-wrapper">
-            <img src="art3.jpg" alt="Article Thumbnail" class="card-img" />
-          </div>
-          <div class="card-body">
-            <span class="card-category">Sports</span>
-            <h3 class="card-title">articles TBD</h3>
-            <p class="card-date">Recent</p>
-          </div>
-        </a>
-
-        <!-- Article Box 4 -->
-        <a href="articles/article4.html" class="article-card">
-          <div class="card-img-wrapper">
-            <img src="art4.jpg" alt="Article Thumbnail" class="card-img" />
-          </div>
-          <div class="card-body">
-            <span class="card-category">Events</span>
-            <h3 class="card-title">articles TBD</h3>
-            <p class="card-date">Recent</p>
-          </div>
-        </a>
+        <article class="side-card">
+          <span class="card-category">Opinion</span>
+          <h4 class="side-title"><a href="articles/article4.html">The Future of Digital Student Publications</a></h4>
+          <p class="card-date">3 days ago</p>
+        </article>
 
       </div>
-    </section>
+    </div>
+
   </main>
 
-  <!-- Footer with Contact Us & Social Links -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
-        <img src="logo67.png" alt="LFT TIMES Logo" class="footer-logo" />
-        <p class="footer-tagline">The official student publication of LFT.</p>
+        <img src="logo.png" alt="LFT TIMES Logo" class="footer-logo" />
+        <p class="footer-tagline">
+          The official independent student publication of Lycée Français de Toronto.
+        </p>
       </div>
+
       <div class="footer-contact">
         <h4>Contact Us</h4>
-        <p>Email: <a href="mailto:lftimes@lft.ca">lftimes@lft.ca</a></p>
-
+        <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
         
-        <!-- Social Media Buttons Below Contact Us -->
         <div class="social-links">
           <a href="#" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
           <a href="#" aria-label="TikTok" class="social-icon"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>&copy; LFT TIMES. All rights reserved.</p>
+      <p>&copy; 2026 LFT TIMES. Published by the students of Lycée Français de Toronto.</p>
     </div>
   </footer>
 

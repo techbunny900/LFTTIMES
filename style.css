@@ -61,9 +61,11 @@ a {
 }
 
 .logo-img {
-  height: 65px; /* <--- Change this number to shrink or enlarge it */
+  height: 40px; /* Controls vertical height inside navbar */
   width: auto;
+  max-width: 140px; /* Prevents the white box from stretching horizontally */
   object-fit: contain;
+  border-radius: 4px; /* Softens the sharp corners of the white background */
   display: block;
 }
 

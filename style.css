@@ -21,6 +21,8 @@ body {
   background-color: var(--light-gray);
   color: var(--dark-gray);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -83,13 +85,15 @@ a {
   background-color: #b80020;
 }
 
-/* Hero Section */
+/* Hero Section & Ultra-Sharp Background */
 .hero {
   position: relative;
-  height: 420px;
+  height: 450px;
+  min-height: 380px;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  background-color: var(--dark-blue);
 }
 
 .hero-bg {
@@ -98,10 +102,16 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: url('bg.png');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-color: var(--dark-blue);
+  
+  /* Prevents blurriness and jagged scaling on ultra-high resolution displays */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0); /* Enables GPU hardware acceleration */
+  will-change: transform;
 }
 
 .hero-overlay {
@@ -112,8 +122,8 @@ a {
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(11, 25, 44, 0.2) 0%,
-    rgba(11, 25, 44, 0.8) 70%,
+    rgba(11, 25, 44, 0.25) 0%,
+    rgba(11, 25, 44, 0.75) 70%,
     rgba(11, 25, 44, 0.95) 100%
   );
   z-index: 1;
@@ -135,6 +145,7 @@ a {
   line-height: 0.95;
   letter-spacing: 2px;
   text-transform: uppercase;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Main Articles Section */
@@ -185,6 +196,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .card-body {

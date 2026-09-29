@@ -46,7 +46,7 @@ a {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 10px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,25 +55,13 @@ a {
 .logo-link {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .logo-img {
-  width: 46px;
-  height: 46px;
+  height: 56px;
+  width: auto;
   object-fit: contain;
-}
-
-.brand-text {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: 1px;
-}
-
-.brand-text span {
-  color: var(--accent-red);
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.15));
 }
 
 .nav-links {
@@ -151,27 +139,14 @@ a {
   padding: 48px 24px;
 }
 
-.hero-tag {
-  background-color: var(--accent-red);
-  color: var(--white);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  padding: 4px 10px;
-  border-radius: 3px;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-
 .hero-title {
   font-family: var(--font-serif);
   color: var(--white);
-  font-size: 3.8rem;
+  font-size: 4rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -1px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .hero-subtitle {
@@ -393,6 +368,10 @@ a {
   .nav-container {
     flex-direction: column;
     gap: 12px;
+  }
+
+  .logo-img {
+    height: 48px;
   }
 
   .hero-title {

@@ -35,14 +35,13 @@ a {
 }
 
 /* Navigation Header */
-/* Navigation Header */
 .navbar {
   background-color: var(--dark-blue);
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  padding: 6px 0; /* Ensures vertical breathing room for a larger logo */
+  padding: 6px 0;
 }
 
 .nav-container {
@@ -61,14 +60,13 @@ a {
 }
 
 .logo-img {
-  height: 40px !important;
+  height: 42px !important;
   width: auto !important;
-  max-width: 130px !important;
+  max-width: 140px !important;
   object-fit: contain;
   border-radius: 4px;
   display: block;
 }
-
 
 .nav-links {
   display: flex;
@@ -359,37 +357,6 @@ a {
   color: #718096;
 }
 
-/* Responsive Behavior */
-@media (max-width: 1024px) {
-  .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .articles-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .logo-img {
-    height: 48px;
-  }
-
-  .hero-title {
-    font-size: 2.8rem;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
 /* About Page Styling */
 .about-container {
   max-width: 900px;
@@ -397,11 +364,12 @@ a {
 }
 
 .about-card {
-  background-color: var(--white);
-  border-radius: 8px;
-  padding: 36px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--border-color);
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  margin-top: 20px;
 }
 
 .about-card.margin-top {
@@ -468,4 +436,31 @@ a {
 .author-title {
   font-size: 0.9rem;
   color: #718096;
+}
+
+/* Responsive Behavior */
+@media (max-width: 1024px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles | LFTimes</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link"><img src="logo67.png" alt="LFTimes" class="logo-img"></a>
+      <nav class="nav-links">
+        <a href="articles.html" class="nav-btn">Articles</a>
+        <a href="photos.html" class="nav-btn">Photos</a>
+        <a href="about.html" class="nav-btn">À Propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="section-header">
+      <h1 class="section-title">Tous les Articles</h1>
+    </div>
+
+    <div class="articles-grid" id="articlesGrid">
+      <p>Chargement des articles...</p>
+    </div>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "METS_TON_URL_ICI";
+    const SUPABASE_KEY = "METS_TA_CLE_ANON_ICI";
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function fetchArticles() {
+      const { data: articles, error } = await _supabase
+        .from('articles')
+        .select('*')
+        .order('id', { ascending: false });
+
+      const grid = document.getElementById("articlesGrid");
+
+      if (error || !articles || articles.length === 0) {
+        grid.innerHTML = "<p>Aucun article trouvé.</p>";
+        return;
+      }
+
+      grid.innerHTML = articles.map(art => {
+        const formattedDate = new Date(art.created_at).toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+
+        return `
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <img src="${art.image || 'https://via.placeholder.com/600x400'}" alt="${art.title}" class="card-img" />
+            </div>
+            <div class="card-body">
+              <span class="card-category">${art.category || 'Général'}</span>
+              <h3 class="card-title"><a href="article.html?id=${art.id}">${art.title}</a></h3>
+              <p class="card-date">${formattedDate}</p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    fetchArticles();
+  </script>
+</body>
+</html>

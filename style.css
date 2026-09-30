@@ -389,3 +389,83 @@ a {
     align-items: flex-start;
   }
 }
+
+/* About Page Styling */
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 36px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-color);
+}
+
+.about-card.margin-top {
+  margin-top: 36px;
+}
+
+.about-card-header {
+  margin-bottom: 24px;
+}
+
+.about-card-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--dark-blue);
+  margin-top: 8px;
+}
+
+.about-badge {
+  background-color: var(--accent-red);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.badge-student {
+  background-color: var(--medium-blue);
+}
+
+.about-text p {
+  color: var(--body-text);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.content-divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 32px 0;
+}
+
+.author-signature {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-left: 3px solid var(--accent-red);
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--dark-blue);
+}
+
+.author-title {
+  font-size: 0.9rem;
+  color: #718096;
+}

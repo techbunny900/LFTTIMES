@@ -29,7 +29,7 @@
       gap: 20px;
     }
     .event-date {
-      min-width: 80px;
+      min-width: 90px;
       text-align: center;
       background: #004488;
       color: #fff;
@@ -37,9 +37,9 @@
       border-radius: 8px;
     }
     .event-date .day {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      line-height: 1;
+      line-height: 1.1;
     }
     .event-date .month {
       font-size: 0.8rem;
@@ -68,63 +68,78 @@
 <body>
 
   <!-- Header Navigation -->
- <!-- Header Navigation -->
-<header class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo-link">
-      <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
-    </a>
-    <nav class="nav-links">
-      <a href="articles.html" class="nav-btn">Articles</a>
-      <a href="about.html" class="nav-btn">About Us</a>
-      <a href="calendar.html" class="nav-btn">Calendar</a>
-    </nav>
-  </div>
-</header>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
+      </a>
+      <nav class="nav-links">
+        <a href="articles.html" class="nav-btn">Articles</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="calendar.html" class="nav-btn active">Calendar</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Main Content Area -->
   <main class="main-content">
     
     <div class="section-header">
-      <h2 class="section-title">Upcoming School & Club Events</h2>
+      <h2 class="section-title">Upcoming Events & School Calendar</h2>
       <div class="title-line"></div>
     </div>
 
     <div class="events-list">
       
+      <!-- Weekly Club Meetings -->
       <div class="event-card">
         <div class="event-date">
-          <div class="day">15</div>
-          <div class="month">OCT</div>
+          <div class="day">THU</div>
+          <div class="month">WEEKLY</div>
         </div>
         <div class="event-details">
-          <h3>LFTimes Editorial Staff Meeting</h3>
-          <p>Join us to pitch new story ideas and discuss upcoming article assignments.</p>
-          <div class="event-meta"><i class="far fa-clock"></i> 12:00 PM – Room 204</div>
+          <h3>LFTimes Club Meetings</h3>
+          <p>Join us to pitch stories, write articles, and work on newspaper production.</p>
+          <div class="event-meta"><i class="far fa-clock"></i> Every Thursday @ 12:00 PM</div>
         </div>
       </div>
 
+      <!-- Halloween Break -->
       <div class="event-card">
         <div class="event-date">
-          <div class="day">22</div>
-          <div class="month">OCT</div>
+          <div class="day">26–01</div>
+          <div class="month">SEP–OCT</div>
         </div>
         <div class="event-details">
-          <h3>Autumn Sports Tournament</h3>
-          <p>Cheer on our school teams as championship season kicks off on the main grounds.</p>
-          <div class="event-meta"><i class="far fa-clock"></i> 3:30 PM – Athletic Field</div>
+          <h3>Halloween Break</h3>
+          <p>School closed for autumn break (September 26 to October 1).</p>
+          <div class="event-meta"><i class="fas fa-umbrella-beach"></i> School Holiday</div>
         </div>
       </div>
 
+      <!-- Thanksgiving -->
       <div class="event-card">
         <div class="event-date">
-          <div class="day">05</div>
-          <div class="month">NOV</div>
+          <div class="day">12</div>
+          <div class="month">OCT</div>
         </div>
         <div class="event-details">
-          <h3>Student Photography Workshop</h3>
-          <p>Learn tips for capturing quality photojournalism for the school newspaper.</p>
-          <div class="event-meta"><i class="far fa-clock"></i> 12:30 PM – Art Studio</div>
+          <h3>Thanksgiving Day</h3>
+          <p>School closed for statutory Thanksgiving holiday.</p>
+          <div class="event-meta"><i class="fas fa-umbrella-beach"></i> School Holiday</div>
+        </div>
+      </div>
+
+      <!-- Christmas Break -->
+      <div class="event-card">
+        <div class="event-date">
+          <div class="day">21–03</div>
+          <div class="month">DEC–JAN</div>
+        </div>
+        <div class="event-details">
+          <h3>Christmas Break</h3>
+          <p>School closed for winter holiday (December 21 to January 3).</p>
+          <div class="event-meta"><i class="fas fa-snowflake"></i> Winter Break</div>
         </div>
       </div>
 

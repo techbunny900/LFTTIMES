@@ -4,35 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Articles | LFTimes</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+  <!-- Navigation -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo-link"><img src="logo67.png" alt="LFTimes" class="logo-img"></a>
+      <a href="index.html" class="logo-link">
+        <img src="logo67.png" alt="LFTimes Logo" class="logo-img" />
+      </a>
       <nav class="nav-links">
         <a href="articles.html" class="nav-btn">Articles</a>
         <a href="photos.html" class="nav-btn">Photos</a>
         <a href="about.html" class="nav-btn">À Propos</a>
+        <a href="calendar.html" class="nav-btn">Calendrier</a>
       </nav>
     </div>
   </header>
 
+  <!-- Catalogue Principal -->
   <main class="main-content">
     <div class="section-header">
       <h1 class="section-title">Tous les Articles</h1>
+      <div class="title-line"></div>
     </div>
 
+    <!-- Grille dynamique des articles -->
     <div class="articles-grid" id="articlesGrid">
-      <p>Chargement des articles...</p>
+      <p class="loading-state">Chargement des articles en cours...</p>
     </div>
   </main>
 
+  <!-- Pied de page -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo67.png" alt="LFTimes Logo" class="footer-logo" onerror="this.style.display='none'" />
+        <p class="footer-tagline">Le journal étudiant indépendant du Lycée Français de Toronto.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LFTimes. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Script Supabase -->
   <script>
-    const SUPABASE_URL = "METS_TON_URL_ICI";
-    const SUPABASE_KEY = "METS_TA_CLE_ANON_ICI";
+    const SUPABASE_URL = "https://glzgdwvxynwgfkcgpzmk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_ghkX09WpI3Tt1ekca3qc7Q_HkaKkfMU";
     const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     async function fetchArticles() {
@@ -43,8 +76,14 @@
 
       const grid = document.getElementById("articlesGrid");
 
-      if (error || !articles || articles.length === 0) {
-        grid.innerHTML = "<p>Aucun article trouvé.</p>";
+      if (error) {
+        console.error("Erreur de récupération Supabase:", error);
+        grid.innerHTML = "<p>Erreur lors du chargement des articles.</p>";
+        return;
+      }
+
+      if (!articles || articles.length === 0) {
+        grid.innerHTML = "<p>Aucun article publié pour le moment.</p>";
         return;
       }
 
@@ -58,10 +97,10 @@
         return `
           <article class="article-card">
             <div class="card-img-wrapper">
-              <img src="${art.image || 'https://via.placeholder.com/600x400'}" alt="${art.title}" class="card-img" />
+              <img src="${art.image || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80'}" alt="${art.title}" class="card-img" />
             </div>
             <div class="card-body">
-              <span class="card-category">${art.category || 'Général'}</span>
+              <span class="card-category">${art.category || 'Actualités'}</span>
               <h3 class="card-title"><a href="article.html?id=${art.id}">${art.title}</a></h3>
               <p class="card-date">${formattedDate}</p>
             </div>

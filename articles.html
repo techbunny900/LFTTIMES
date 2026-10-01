@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,31 +25,31 @@
       <nav class="nav-links">
         <a href="articles.html" class="nav-btn">Articles</a>
         <a href="photos.html" class="nav-btn">Photos</a>
-        <a href="about.html" class="nav-btn">À Propos</a>
-        <a href="calendar.html" class="nav-btn">Calendrier</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="calendar.html" class="nav-btn">Calendar</a>
       </nav>
     </div>
   </header>
 
-  <!-- Catalogue Principal -->
+  <!-- Main Content -->
   <main class="main-content">
     <div class="section-header">
-      <h1 class="section-title">Tous les Articles</h1>
+      <h1 class="section-title">All Articles</h1>
       <div class="title-line"></div>
     </div>
 
-    <!-- Grille dynamique des articles -->
+    <!-- Dynamic Articles Grid -->
     <div class="articles-grid" id="articlesGrid">
-      <p class="loading-state">Chargement des articles en cours...</p>
+      <p class="loading-state">Loading articles...</p>
     </div>
   </main>
 
-  <!-- Pied de page -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
         <img src="logo67.png" alt="LFTimes Logo" class="footer-logo" onerror="this.style.display='none'" />
-        <p class="footer-tagline">Le journal étudiant indépendant du Lycée Français de Toronto.</p>
+        <p class="footer-tagline">The independent student newspaper of the Lycée Français de Toronto.</p>
       </div>
       <div class="footer-contact">
         <h4>Contact</h4>
@@ -58,11 +58,11 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 LFTimes. Tous droits réservés.</p>
+      <p>&copy; 2026 LFTimes. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Script Supabase -->
+  <!-- Supabase Script -->
   <script>
     const SUPABASE_URL = "https://glzgdwvxynwgfkcgpzmk.supabase.co";
     const SUPABASE_KEY = "sb_publishable_ghkX09WpI3Tt1ekca3qc7Q_HkaKkfMU";
@@ -77,18 +77,18 @@
       const grid = document.getElementById("articlesGrid");
 
       if (error) {
-        console.error("Erreur de récupération Supabase:", error);
-        grid.innerHTML = "<p>Erreur lors du chargement des articles.</p>";
+        console.error("Supabase fetch error:", error);
+        grid.innerHTML = "<p>Error loading articles.</p>";
         return;
       }
 
       if (!articles || articles.length === 0) {
-        grid.innerHTML = "<p>Aucun article publié pour le moment.</p>";
+        grid.innerHTML = "<p>No articles published yet.</p>";
         return;
       }
 
       grid.innerHTML = articles.map(art => {
-        const formattedDate = new Date(art.created_at).toLocaleDateString('fr-FR', {
+        const formattedDate = new Date(art.created_at).toLocaleDateString('en-US', {
           day: 'numeric',
           month: 'long',
           year: 'numeric'
@@ -100,7 +100,7 @@
               <img src="${art.image || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80'}" alt="${art.title}" class="card-img" />
             </div>
             <div class="card-body">
-              <span class="card-category">${art.category || 'Actualités'}</span>
+              <span class="card-category">${art.category || 'News'}</span>
               <h3 class="card-title"><a href="article.html?id=${art.id}">${art.title}</a></h3>
               <p class="card-date">${formattedDate}</p>
             </div>

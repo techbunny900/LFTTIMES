@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar | LFTimes</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .events-list {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .event-card {
+      display: flex;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border: 1px solid #eef2f5;
+      align-items: center;
+      gap: 20px;
+    }
+    .event-date {
+      min-width: 80px;
+      text-align: center;
+      background: #004488;
+      color: #fff;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .event-date .day {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .event-date .month {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .event-details h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+      color: #1a1a1a;
+    }
+    .event-details p {
+      margin: 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .event-meta {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: #004488;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
+      </a>
+      <nav class="nav-links">
+        <a href="articles.html" class="nav-btn">Articles</a>
+        <a href="photos.html" class="nav-btn">Photos</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="calendar.html" class="nav-btn active">Calendar</a>
+        <a href="login.html" class="nav-btn btn-login">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <div class="section-header">
+      <h2 class="section-title">Upcoming School & Club Events</h2>
+      <div class="title-line"></div>
+    </div>
+
+    <div class="events-list">
+      
+      <div class="event-card">
+        <div class="event-date">
+          <div class="day">15</div>
+          <div class="month">OCT</div>
+        </div>
+        <div class="event-details">
+          <h3>LFTimes Editorial Staff Meeting</h3>
+          <p>Join us to pitch new story ideas and discuss upcoming article assignments.</p>
+          <div class="event-meta"><i class="far fa-clock"></i> 12:00 PM – Room 204</div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">
+          <div class="day">22</div>
+          <div class="month">OCT</div>
+        </div>
+        <div class="event-details">
+          <h3>Autumn Sports Tournament</h3>
+          <p>Cheer on our school teams as championship season kicks off on the main grounds.</p>
+          <div class="event-meta"><i class="far fa-clock"></i> 3:30 PM – Athletic Field</div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">
+          <div class="day">05</div>
+          <div class="month">NOV</div>
+        </div>
+        <div class="event-details">
+          <h3>Student Photography Workshop</h3>
+          <p>Learn tips for capturing quality photojournalism for the school newspaper.</p>
+          <div class="event-meta"><i class="far fa-clock"></i> 12:30 PM – Art Studio</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo67.png" alt="LFTimes Logo" class="footer-logo" onerror="this.style.display='none'" />
+        <p class="footer-tagline">
+          The official independent student publication of Lycée Français de Toronto. Uncovering campus stories, highlighting student achievements, and sharing student voices.
+        </p>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
+        <p><i class="fas fa-users"></i> Club Meetings: Thursdays @ 12:00 PM</p>
+        
+        <!-- Staff Access Link -->
+        <p style="margin-top: 10px;">
+          <i class="fas fa-lock"></i> <a href="login.html" style="text-decoration: underline; opacity: 0.8;">Staff Portal</a>
+        </p>
+        
+        <div class="social-links">
+          <a href="https://www.instagram.com/littlefrenchtimes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 LFTimes. Published by the students of Lycée Français de Toronto. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

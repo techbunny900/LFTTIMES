@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Login | LFTimes</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    .login-wrapper {
+      max-width: 450px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eef2f5;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; }
+    .form-group input { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
+    .btn-action { background: #004488; color: white; border: none; padding: 14px 24px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; }
+    .btn-action:hover { background: #002244; }
+    .btn-logout { background: #d9534f; }
+    .btn-logout:hover { background: #c9302c; }
+    #statusMessage { margin-top: 15px; font-weight: 600; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
+      </a>
+      <nav class="nav-links">
+        <a href="articles.html" class="nav-btn">Articles</a>
+        <a href="photos.html" class="nav-btn">Photos</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="calendar.html" class="nav-btn">Calendar</a>
+        <a href="login.html" class="nav-btn btn-login">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="login-wrapper">
+      
+      <!-- Login Box -->
+      <div id="loginBox">
+        <div class="section-header" style="margin-bottom: 20px; text-align: center;">
+          <h2>Staff Login</h2>
+        </div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="writer@lft.ca" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required placeholder="••••••••" />
+          </div>
+          <button type="submit" class="btn-action"><i class="fas fa-sign-in-alt"></i> Log In</button>
+        </form>
+      </div>
+
+      <!-- Logged In Box -->
+      <div id="loggedInBox" style="display: none; text-align: center;">
+        <i class="fas fa-user-check" style="font-size: 3rem; color: #5cb85c; margin-bottom: 15px;"></i>
+        <h2>Welcome Back!</h2>
+        <p id="userEmailDisplay" style="margin: 10px 0 20px 0; color: #555;"></p>
+        <a href="submit.html" class="btn-action" style="display: inline-block; text-decoration: none; margin-bottom: 10px;">Go to Publishing Portal</a>
+        <button onclick="handleLogout()" class="btn-action btn-logout">Log Out</button>
+      </div>
+
+      <div id="statusMessage"></div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo67.png" alt="LFTimes Logo" class="footer-logo" onerror="this.style.display='none'" />
+        <p class="footer-tagline">The official independent student publication of Lycée Français de Toronto.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LFTimes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = "https://glzgdwvxynwgfkcgpzmk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_ghkX09WpI3Tt1ekca3qc7Q_HkaKkfMU";
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function checkUser() {
+      const { data: { user } } = await _supabase.auth.getUser();
+      if (user) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("loggedInBox").style.display = "block";
+        document.getElementById("userEmailDisplay").innerText = `Signed in as: ${user.email}`;
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = document.getElementById("statusMessage");
+      status.style.color = "#004488";
+      status.innerText = "Verifying credentials...";
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        status.style.color = "#d9534f";
+        status.innerText = error.message;
+      } else {
+        status.style.color = "#5cb85c";
+        status.innerText = "Login successful! Redirecting...";
+        setTimeout(() => { window.location.href = "submit.html"; }, 1000);
+      }
+    });
+
+    async function handleLogout() {
+      await _supabase.auth.signOut();
+      window.location.reload();
+    }
+
+    checkUser();
+  </script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publish Article | LFTimes</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    .submit-wrapper {
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eef2f5;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 1rem; box-sizing: border-box;
+    }
+    .btn-submit {
+      background: #004488; color: white; border: none; padding: 14px 24px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%;
+    }
+    .btn-submit:hover { background: #002244; }
+    #statusMessage { margin-top: 15px; font-weight: 600; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
+      </a>
+      <nav class="nav-links">
+        <a href="articles.html" class="nav-btn">Articles</a>
+        <a href="photos.html" class="nav-btn">Photos</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="calendar.html" class="nav-btn">Calendar</a>
+        <a href="login.html" class="nav-btn btn-login">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="submit-wrapper">
+      
+      <!-- Loading State -->
+      <div id="authCheck" style="text-align: center; padding: 30px;">
+        <p>Checking staff authorization...</p>
+      </div>
+
+      <!-- Access Denied View -->
+      <div id="accessDenied" style="display: none; text-align: center; padding: 20px;">
+        <i class="fas fa-lock" style="font-size: 3rem; color: #d9534f; margin-bottom: 15px;"></i>
+        <h2>Access Restricted</h2>
+        <p style="margin-bottom: 20px; color: #666;">You must be logged in as an authorized staff member to publish articles.</p>
+        <a href="login.html" class="btn-submit" style="display: inline-block; text-decoration: none; width: auto; padding: 10px 20px;">Go to Staff Login</a>
+      </div>
+
+      <!-- Article Publishing Form -->
+      <div id="articlePortal" style="display: none;">
+        <div class="section-header" style="margin-bottom: 25px;">
+          <h2 class="section-title">Publish New Article</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <form id="articleForm">
+          <div class="form-group">
+            <label for="title">Article Title</label>
+            <input type="text" id="title" required placeholder="e.g. LFT Basketball Victory" />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="Campus News">Campus News</option>
+              <option value="Sports">Sports</option>
+              <option value="Arts & Culture">Arts & Culture</option>
+              <option value="Opinion">Opinion</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="author">Author Name</label>
+            <input type="text" id="author" required placeholder="e.g. Alex Smith" />
+          </div>
+
+          <div class="form-group">
+            <label for="role">Author Role / Grade</label>
+            <input type="text" id="role" placeholder="e.g. Student Journalist / Grade 11" />
+          </div>
+
+          <div class="form-group">
+            <label for="image">Header Image URL</label>
+            <input type="url" id="image" placeholder="https://images.unsplash.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label for="content">Article Content</label>
+            <textarea id="content" rows="10" required placeholder="Write or paste article text here..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Publish Article</button>
+        </form>
+
+        <div id="statusMessage"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo67.png" alt="LFTimes Logo" class="footer-logo" onerror="this.style.display='none'" />
+        <p class="footer-tagline">The official independent student publication of Lycée Français de Toronto.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LFTimes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = "https://glzgdwvxynwgfkcgpzmk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_ghkX09WpI3Tt1ekca3qc7Q_HkaKkfMU";
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function verifyAuth() {
+      const { data: { user } } = await _supabase.auth.getUser();
+      document.getElementById("authCheck").style.display = "none";
+
+      if (user) {
+        document.getElementById("articlePortal").style.display = "block";
+      } else {
+        document.getElementById("accessDenied").style.display = "block";
+      }
+    }
+
+    document.getElementById("articleForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = document.getElementById("statusMessage");
+      status.style.color = "#004488";
+      status.innerText = "Publishing article live...";
+
+      const { data, error } = await _supabase.from('articles').insert([
+        {
+          title: document.getElementById("title").value,
+          category: document.getElementById("category").value,
+          author: document.getElementById("author").value,
+          role: document.getElementById("role").value,
+          image: document.getElementById("image").value,
+          content: document.getElementById("content").value
+        }
+      ]);
+
+      if (error) {
+        console.error("Supabase insert error:", error);
+        status.style.color = "#d9534f";
+        status.innerText = `Error: ${error.message}`;
+      } else {
+        status.style.color = "#5cb85c";
+        status.innerText = "🎉 Article published! Redirecting to articles grid...";
+        document.getElementById("articleForm").reset();
+        
+        setTimeout(() => { window.location.href = "articles.html"; }, 2000);
+      }
+    });
+
+    verifyAuth();
+  </script>
+</body>
+</html>

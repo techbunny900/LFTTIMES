@@ -13,6 +13,9 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -20,8 +23,8 @@
   <header class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo-link">
-  <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
-</a>
+        <img src="logo67.png" alt="LFTimes Logo" class="logo-img" style="height: 40px !important; width: auto !important; max-width: 130px !important;" />
+      </a>
       <nav class="nav-links">
         <a href="articles.html" class="nav-btn">Articles</a>
         <a href="photos.html" class="nav-btn">Photos</a>
@@ -50,53 +53,9 @@
       <div class="title-line"></div>
     </div>
 
-    <!-- 4-Card Article Grid -->
-    <div class="articles-grid">
-      
-      <article class="article-card">
-        <div class="card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80" alt="Campus Innovation" class="card-img" />
-        </div>
-        <div class="card-body">
-          <span class="card-category">Campus News</span>
-          <h3 class="card-title"><a href="articles/article1.html">Campus Innovation: New Student Projects Taking Center Stage</a></h3>
-          <p class="card-date">October 24, 2026</p>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <div class="card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=80" alt="LFT Athletics" class="card-img" />
-        </div>
-        <div class="card-body">
-          <span class="card-category">Sports</span>
-          <h3 class="card-title"><a href="articles/article2.html">Championship Season Begins for LFT Athletics</a></h3>
-          <p class="card-date">October 22, 2026</p>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <div class="card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=600&auto=format&fit=crop&q=80" alt="Arts Spotlight" class="card-img" />
-        </div>
-        <div class="card-body">
-          <span class="card-category">Arts & Culture</span>
-          <h3 class="card-title"><a href="articles/article3.html">Student Gallery Showcase: Visual Arts Spotlight</a></h3>
-          <p class="card-date">October 20, 2026</p>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <div class="card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&auto=format&fit=crop&q=80" alt="Digital Publications" class="card-img" />
-        </div>
-        <div class="card-body">
-          <span class="card-category">Opinion</span>
-          <h3 class="card-title"><a href="articles/article4.html">The Future of Digital Student Publications</a></h3>
-          <p class="card-date">October 18, 2026</p>
-        </div>
-      </article>
-
+    <!-- 4-Card Dynamic Article Grid -->
+    <div class="articles-grid" id="articlesGrid">
+      <p style="grid-column: 1 / -1; text-align: center; color: #666; padding: 20px;">Loading latest articles...</p>
     </div>
 
   </main>
@@ -112,27 +71,79 @@
       </div>
 
       <div class="footer-contact">
-  <h4>Contact Us</h4>
-  <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
-  <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
-  <p><i class="fas fa-users"></i> Club Meetings: Thursdays @ 12:00 PM</p>
-  
-  <!-- Staff Access Link -->
-  <p style="margin-top: 10px;">
-    <i class="fas fa-lock"></i> <a href="login.html" style="text-decoration: underline; opacity: 0.8;">Staff Portal</a>
-  </p>
-  
-  <div class="social-links">
-    <a href="https://www.instagram.com/littlefrenchtimes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
-    <a href="#" aria-label="TikTok" class="social-icon"><i class="fab fa-tiktok"></i></a>
-  </div>
-</div>
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:lfttimes@lft.ca">lfttimes@lft.ca</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 2327 Dufferin Street, Toronto, ON</p>
+        <p><i class="fas fa-users"></i> Club Meetings: Thursdays @ 12:00 PM</p>
+        
+        <!-- Staff Access Link -->
+        <p style="margin-top: 10px;">
+          <i class="fas fa-lock"></i> <a href="login.html" style="text-decoration: underline; opacity: 0.8;">Staff Portal</a>
+        </p>
+        
+        <div class="social-links">
+          <a href="https://www.instagram.com/littlefrenchtimes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
     </div>
 
     <div class="footer-bottom">
       <p>&copy; 2026 LFTimes. Published by the students of Lycée Français de Toronto. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    const SUPABASE_URL = "https://glzgdwvxynwgfkcgpzmk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_ghkX09WpI3Tt1ekca3qc7Q_HkaKkfMU";
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function loadLatestArticles() {
+      const container = document.getElementById("articlesGrid");
+
+      // Fetch latest 4 articles sorted by creation date
+      const { data: articles, error } = await _supabase
+        .from('articles')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(4);
+
+      if (error) {
+        console.error("Error loading articles:", error);
+        container.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: #d9534f; padding: 20px;">Failed to load articles.</p>`;
+        return;
+      }
+
+      if (!articles || articles.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: #666; padding: 20px;">No articles published yet.</p>`;
+        return;
+      }
+
+      container.innerHTML = articles.map(art => {
+        const formattedDate = art.created_at 
+          ? new Date(art.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+          : 'Recent';
+
+        const fallbackImg = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80';
+        const articleImg = art.image || fallbackImg;
+
+        return `
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <img src="${articleImg}" alt="${art.title || 'LFTimes Article'}" class="card-img" onerror="this.src='${fallbackImg}'" />
+            </div>
+            <div class="card-body">
+              <span class="card-category">${art.category || 'Campus News'}</span>
+              <h3 class="card-title"><a href="articles/article.html?id=${art.id}">${art.title}</a></h3>
+              <p class="card-date">${formattedDate}</p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    window.addEventListener("DOMContentLoaded", loadLatestArticles);
+  </script>
 
 </body>
 </html>
